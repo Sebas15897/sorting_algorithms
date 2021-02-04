@@ -1,34 +1,38 @@
 #include "sort.h"
 
 /**
- * bubble_sort - sorts an array of integers in ascending order
- * @array: array of integer
- * @size: size of the array
- * int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
- */
+ * bubble_sort - This function sorts an array of integers in ascending
+ * order using the Bubble sort algorithm.
+ * @array: The array that is ordered.
+ * @size: The size of the array.
+ *
+ * Return: Nothing.
+ **/
 void bubble_sort(int *array, size_t size)
 {
-	size_t idx = 0, aux = 0, loop = 0;
+	size_t total_times, position_value;
+	int container = 0;
 
-	while (idx < size)
+	if (!array || !size || size < 2)
 	{
-		aux = idx + 1;
-		if (aux < size && array[aux] < array[idx])
+		return;
+	}
+
+	total_times = 0;
+	while (total_times < size)
+	{
+		position_value = 0;
+		while (position_value < (size - 1))
 		{
-			aux = array[idx];
-			array[idx] = array[idx + 1];
-			array[idx + 1] = aux;
-			print_array(array, size);
-			loop++;
+			if (array[position_value] > array[position_value + 1])
+			{
+				container = array[position_value];
+				array[position_value] = array[position_value + 1];
+				array[position_value + 1] = container;
+				print_array(array, size);
+			}
+			position_value++;
 		}
-		if (idx + 1 == size)
-		{
-			if (loop == 0)
-				break;
-			idx = 0;
-			loop = 0;
-			continue;
-		}
-		idx += 1;
+		total_times++;
 	}
 }
