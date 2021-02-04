@@ -19,7 +19,7 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-/* Prototypes (Basic) */
+/* Prototypes */
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
@@ -30,4 +30,6 @@ void quicksort_recursion(int *array, size_t size, ssize_t first, ssize_t last);
 size_t partition(int *array, size_t size, ssize_t first, ssize_t last);
 void swap(int *array, size_t size, int *value1, int *value2);
 
-#endif /*_SORT_H_ */
+#endif/*_SORT_H_ */
+
+
