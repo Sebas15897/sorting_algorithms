@@ -10,7 +10,7 @@
 void selection_sort(int *array, size_t size)
 {
 	size_t i, j, p_min;
-	int temporal;
+	int temp;
 
 	for (i = 0; i < (size - 1); i++)
 	{
@@ -22,9 +22,9 @@ void selection_sort(int *array, size_t size)
 		}
 		if (p_min != i)
 		{
-			temporal = array[p_min];
+			temp = array[p_min];
 			array[p_min] = array[i];
-			array[i] = temporal;
+			array[i] = temp;
 			print_array(array, size);
 		}
 	}
