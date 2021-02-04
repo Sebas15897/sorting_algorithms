@@ -1,17 +1,19 @@
 #ifndef SORT_H
 #define SORT_H
 
-#include <stdlib.h> 
-#include <stdio.h> 
-#include <string.h>
+/* headers */
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
 /**
- * struct listint_s - Doubly linked list node
+ * bubble_sort - This function sorts an array of integers in ascending
+ * order using the Bubble sort algorithm.
+ * @array: The array that is ordered.
+ * @size: The size of the array.
  *
- * @n: Integer stored in the node
- * @prev: Pointer to the previous element of the list
- * @next: Pointer to the next element of the list
- */
+ * Return: Nothing.
+ **/
 typedef struct listint_s
 {
 	const int n;
@@ -19,6 +21,7 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
+/* prototypes */
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
@@ -26,4 +29,4 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 
-#endif /* SORT_H */
+#endif /* SORT_H *
