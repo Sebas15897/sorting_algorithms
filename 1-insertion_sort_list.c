@@ -1,83 +1,51 @@
-  
 #include "sort.h"
 
 /**
- * insertion_sort_list - This function sorts a doubly linked
- * list of integers in ascending order using the Insertion sort algorithm.
- * @list: The list.
- *
- * Return: Nothing.
- **/
+* insertion_sort_list - sorts a doubly linked list of integers in
+* ascending order using the Insertion sort algorithm
+* @list: List to order
+* Return : Void - No return
+*/
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *aux;
-	int c;
+	listint_t *aux2 = NULL, *aux_prev = NULL, *aux_next = NULL, *tmp = NULL;
+	int wall = 0;
 
 	if (!list || !*list)
 		return;
-	aux = *list;
-	while (aux->next)
+
+	tmp = *list;
+
+	while (tmp)
 	{
-		c = 1;
-		if (aux->n > aux->next->n)
+		if (tmp->prev != NULL)
 		{
-			if(!aux->prev)
+			aux2 = tmp;
+			wall = 0;
+			while (aux2 && aux2->prev->n > aux2->n)
 			{
-				if (!aux->next->next)
-				{
-					aux->next->next = aux;
-					aux->next->prev = NULL;
-					aux->prev = aux->next;
-					aux->next = NULL;
-				}
+				aux_prev = aux2->prev;
+				aux_next = aux2->next;
+
+				if (aux_prev->prev)
+					aux_prev->prev->next = aux2;
 				else
 				{
-					aux->next = aux->next->next;
-					aux->next->prev->next = aux;
-					aux->next->prev->prev = NULL;
-					aux->prev = aux->next->prev;
-					aux->next->prev = aux;
+					*list = aux2;
+					wall = 1;
 				}
-				*list = aux->prev;
-				aux = aux->prev;
+				if (aux_next)
+					aux_next->prev = aux_prev;
+
+				aux2->prev = aux_prev->prev;
+				aux2->next = aux_prev;
+				aux_prev->prev = aux2;
+				aux_prev->next = aux_next;
+				print_list(*list);
+				if (wall)
+					break;
 			}
-			else if ((aux->next->next) && (aux->prev))
-			{
-				aux->prev->next = aux->next;
-				aux->next->prev = aux->prev;
-				aux->next->next->prev = aux;
-				aux->next = aux->next->next;
-				aux->prev->next->next = aux;
-				aux->prev = aux->prev->next;
-				aux = aux->prev;
-				if (aux->prev->n > aux->n)
-				{
-					if (aux->prev->prev)
-						aux = aux->prev->prev;
-					else
-					{
-						aux = aux->prev;
-						c = 2;
-					}
-				}
-			}
-			else
-			{
-				aux->prev->next = aux->next;
-				aux->next->next = aux;
-				aux->next->prev = aux->prev;
-				aux->prev = aux->next;
-				aux->next = NULL;
-				aux = aux->prev;
-				if (aux->prev->n > aux->n)
-				{
-					if (aux->prev->prev)
-						aux = aux->prev->prev;
-				}
-			}
-			print_list(*list);
 		}
-		if (c == 1)
-			aux = aux->next;
+		tmp = tmp->next;
 	}
 }
