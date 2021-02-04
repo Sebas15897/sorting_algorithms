@@ -12,13 +12,13 @@
 int part(int *arr, int low, int high, size_t size)
 {
 	int i = 0, j;
-	int pivot = 0, tmp = 0;
+	int piv = 0, tmp = 0;
 
 	i = low - 1;
-	pivot = arr[high];
+	piv = arr[high];
 	for (j = low; j <= high - 1; j++)
 	{
-		if (arr[j] < pivot)
+		if (arr[j] < piv)
 		{
 			i++;
 			tmp = arr[i];
@@ -50,13 +50,13 @@ int part(int *arr, int low, int high, size_t size)
 
 void execute(int *ar, int low, int high, size_t size)
 {
-	int pivote = 0;
+	int pivv = 0;
 
 	if (low < high)
 	{
-		pivote = part(ar, low, high, size);
-		execute(ar, low, pivote - 1, size);
-		execute(ar, pivote + 1, high, size);
+		pivv = part(ar, low, high, size);
+		execute(ar, low, pivv - 1, size);
+		execute(ar, pivv + 1, high, size);
 	}
 }
 
