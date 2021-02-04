@@ -30,4 +30,4 @@ void quicksort_recursion(int *array, size_t size, ssize_t first, ssize_t last);
 size_t partition(int *array, size_t size, ssize_t first, ssize_t last);
 void swap(int *array, size_t size, int *value1, int *value2);
 
-#endf
+#endf _SORT_H_
